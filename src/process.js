@@ -224,6 +224,11 @@ export const mapRelations = (entities, relations, files) => {
                 const targetItemId = relation[j.field_many];
                 const targetKey = `${j.field_one}___NODE`;
                 let targetVal; // This gets tricky if the targets are files
+            
+      if(targetCol === 'directus_files'){
+        return;  //temp work around for 'files' relationships
+      }
+        
                 if (anotherCol === 'directus_files') {
                     const targetFile = files.find(
                         f => f.directus.directusId === relation[j.junction_field],
